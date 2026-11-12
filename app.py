@@ -19,6 +19,15 @@ def load_model():
         from sklearn.neural_network import MLPClassifier
         from sklearn.model_selection import train_test_split
 
+                model = MLPClassifier(hidden_layer_sizes=(64, 32), max_iter=500, random_state=42)
+        model.fit(X_train, y_train)
+
+        return model
+
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        return None
+
         digits = load_digits()
         X = digits.images.reshape((len(digits.images), -1)) / 16.0
         y = digits.target
